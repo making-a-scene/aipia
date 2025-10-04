@@ -1,6 +1,7 @@
 package com.aipia.tesk.service;
 
 import com.aipia.tesk.domain.Member;
+import com.aipia.tesk.dto.MemberJoinDto;
 import com.aipia.tesk.repository.MemberRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -45,11 +46,17 @@ class MemberServiceTest {
     @DisplayName("회원 가입 성공 테스트")
     void joinSuccess() {
         // given
+        MemberJoinDto memberJoinDto = MemberJoinDto.builder()
+                .name("홍길동")
+                .email("hong@example.com")
+                .password("password123")
+                .build();
+
         given(memberRepository.existsByEmail(anyString())).willReturn(false);
         given(memberRepository.save(any(Member.class))).willReturn(testMember);
 
         // when
-        Member savedMember = memberService.join("홍길동", "hong@example.com", "password123");
+        Member savedMember = memberService.join(memberJoinDto);
 
         // then
         assertThat(savedMember.getName()).isEqualTo("홍길동");
@@ -64,10 +71,16 @@ class MemberServiceTest {
     @DisplayName("중복 이메일로 회원 가입 시 예외 발생")
     void joinWithDuplicateEmail() {
         // given
+        MemberJoinDto memberJoinDto = MemberJoinDto.builder()
+                .name("홍길동")
+                .email("hong@example.com")
+                .password("password123")
+                .build();
+
         given(memberRepository.existsByEmail("hong@example.com")).willReturn(true);
 
         // when & then
-        assertThatThrownBy(() -> memberService.join("홍길동", "hong@example.com", "password123"))
+        assertThatThrownBy(() -> memberService.join(memberJoinDto))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage("이미 존재하는 회원입니다.");
 
