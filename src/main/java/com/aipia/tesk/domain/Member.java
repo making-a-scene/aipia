@@ -2,6 +2,9 @@ package com.aipia.tesk.domain;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "member")
 public class Member {
@@ -17,4 +20,7 @@ public class Member {
 
     @Column(name = "password")
     private String password;
+
+    @OneToMany(mappedBy = "member")
+    private List<Order> orders = new ArrayList<>();
 }
