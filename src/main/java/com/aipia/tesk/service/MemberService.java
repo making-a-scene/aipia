@@ -1,6 +1,7 @@
 package com.aipia.tesk.service;
 
 import com.aipia.tesk.domain.Member;
+import com.aipia.tesk.dto.MemberJoinDto;
 import com.aipia.tesk.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,13 +18,13 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     @Transactional
-    public Member join(String name, String email, String password) {
-        validateDuplicateMember(email);
+    public Member join(MemberJoinDto memberJoinDto) {
+        validateDuplicateMember(memberJoinDto.getEmail());
 
         Member member = Member.builder()
-                .name(name)
-                .email(email)
-                .password(password)
+                .name(memberJoinDto.getName())
+                .email(memberJoinDto.getEmail())
+                .password(memberJoinDto.getPassword())
                 .build();
 
         return memberRepository.save(member);
