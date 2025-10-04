@@ -2,6 +2,7 @@ package com.aipia.tesk.service;
 
 import com.aipia.tesk.domain.Member;
 import com.aipia.tesk.dto.MemberJoinDto;
+import com.aipia.tesk.exception.DuplicateMemberException;
 import com.aipia.tesk.repository.MemberRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -81,7 +82,7 @@ class MemberServiceTest {
 
         // when & then
         assertThatThrownBy(() -> memberService.join(memberJoinDto))
-                .isInstanceOf(IllegalStateException.class)
+                .isInstanceOf(DuplicateMemberException.class)
                 .hasMessage("이미 존재하는 회원입니다.");
 
         verify(memberRepository).existsByEmail("hong@example.com");
