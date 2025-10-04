@@ -2,6 +2,7 @@ package com.aipia.tesk.service;
 
 import com.aipia.tesk.domain.Member;
 import com.aipia.tesk.dto.MemberJoinDto;
+import com.aipia.tesk.exception.DuplicateMemberException;
 import com.aipia.tesk.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,7 @@ public class MemberService {
 
     private void validateDuplicateMember(String email) {
         if (memberRepository.existsByEmail(email)) {
-            throw new IllegalStateException("이미 존재하는 회원입니다.");
+            throw new DuplicateMemberException("이미 존재하는 회원입니다.");
         }
     }
 
