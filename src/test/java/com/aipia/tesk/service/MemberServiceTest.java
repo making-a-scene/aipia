@@ -34,7 +34,7 @@ class MemberServiceTest {
     @BeforeEach
     void setUp() {
         testMember = Member.builder()
-                .id("1")
+                .id(1L)
                 .name("홍길동")
                 .email("hong@example.com")
                 .password("password123")
@@ -80,13 +80,13 @@ class MemberServiceTest {
     void findMembers() {
         // given
         Member member1 = Member.builder()
-                .id("1")
+                .id(1L)
                 .name("회원1")
                 .email("member1@example.com")
                 .password("password1")
                 .build();
         Member member2 = Member.builder()
-                .id("2")
+                .id(2L)
                 .name("회원2")
                 .email("member2@example.com")
                 .password("password2")
@@ -110,32 +110,32 @@ class MemberServiceTest {
     @DisplayName("ID로 회원 조회 성공 테스트")
     void findOneSuccess() {
         // given
-        given(memberRepository.findById("1")).willReturn(Optional.of(testMember));
+        given(memberRepository.findById(1L)).willReturn(Optional.of(testMember));
 
         // when
-        Optional<Member> foundMember = memberService.findOne("1");
+        Optional<Member> foundMember = memberService.findOne(1L);
 
         // then
         assertThat(foundMember).isPresent();
         assertThat(foundMember.get().getName()).isEqualTo("홍길동");
         assertThat(foundMember.get().getEmail()).isEqualTo("hong@example.com");
 
-        verify(memberRepository).findById("1");
+        verify(memberRepository).findById(1L);
     }
 
     @Test
     @DisplayName("존재하지 않는 ID로 회원 조회 시 빈 Optional 반환")
     void findOneNotFound() {
         // given
-        given(memberRepository.findById("999")).willReturn(Optional.empty());
+        given(memberRepository.findById(999L)).willReturn(Optional.empty());
 
         // when
-        Optional<Member> foundMember = memberService.findOne("999");
+        Optional<Member> foundMember = memberService.findOne(999L);
 
         // then
         assertThat(foundMember).isEmpty();
 
-        verify(memberRepository).findById("999");
+        verify(memberRepository).findById(999L);
     }
 
     @Test
