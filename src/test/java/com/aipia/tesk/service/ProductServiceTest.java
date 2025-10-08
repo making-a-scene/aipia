@@ -1,5 +1,6 @@
-package com.aipia.tesk.domain;
+package com.aipia.tesk.service;
 
+import com.aipia.tesk.domain.Product;
 import com.aipia.tesk.dto.ProductCreateDto;
 import com.aipia.tesk.exception.InvalidProductException;
 import org.junit.jupiter.api.DisplayName;
@@ -7,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-class ProductTest {
+class ProductServiceTest {
 
     @Test
     @DisplayName("상품 정상 등록 테스트")

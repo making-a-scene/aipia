@@ -4,6 +4,7 @@ import com.aipia.tesk.domain.Member;
 import com.aipia.tesk.dto.MemberJoinDto;
 import com.aipia.tesk.exception.DuplicateMemberException;
 import com.aipia.tesk.repository.MemberRepository;
+import com.aipia.tesk.service.MemberService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
