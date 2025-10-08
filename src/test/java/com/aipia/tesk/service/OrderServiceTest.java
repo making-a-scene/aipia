@@ -7,6 +7,7 @@ import com.aipia.tesk.dto.OrderProductDto;
 import com.aipia.tesk.exception.InsufficientStockException;
 import com.aipia.tesk.exception.InvalidDateRangeException;
 import com.aipia.tesk.exception.OrderNotFoundException;
+import com.aipia.tesk.repository.MemberRepository;
 import com.aipia.tesk.repository.OrderRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -22,6 +23,7 @@ import org.springframework.data.domain.Pageable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
@@ -29,7 +31,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.doThrow;
 
 @ExtendWith(MockitoExtension.class)
 class OrderServiceTest {
@@ -39,6 +41,9 @@ class OrderServiceTest {
 
     @Mock
     private OrderProductService orderProductService;
+
+    @Mock
+    private MemberRepository memberRepository;
 
     @InjectMocks
     private OrderService orderService;
@@ -80,6 +85,7 @@ class OrderServiceTest {
                 .orderProducts(Arrays.asList(orderProduct1, orderProduct2))
                 .build();
 
+        given(memberRepository.findById(1L)).willReturn(Optional.of(testMember));
         given(orderRepository.save(any(Order.class))).willReturn(testOrder);
 
         // when
@@ -89,11 +95,13 @@ class OrderServiceTest {
         assertThat(createdOrder).isNotNull();
         assertThat(createdOrder.getMember().getId()).isEqualTo(1L);
 
+        verify(memberRepository).findById(1L);
         verify(orderRepository).save(any(Order.class));
+        verify(orderProductService).createOrderProducts(any(Order.class), any(List.class));
     }
 
     @Test
-    @DisplayName("주문 생성 실패 - 재고 부족 시 Order 엔티티 생성되지 않음")
+    @DisplayName("주문 생성 실패 - 재고 부족으로 트랜잭션 롤백")
     void createOrderFailDueToInsufficientStock() {
         // given
         OrderProductDto orderProduct = OrderProductDto.builder()
@@ -106,14 +114,15 @@ class OrderServiceTest {
                 .orderProducts(Arrays.asList(orderProduct))
                 .build();
 
-        given(orderProductService.validateStock(any())).willThrow(new InsufficientStockException("재고가 부족합니다."));
+        given(memberRepository.findById(1L)).willReturn(Optional.of(testMember));
+        given(orderRepository.save(any(Order.class))).willReturn(testOrder);
+        doThrow(new InsufficientStockException("재고가 부족합니다."))
+                .when(orderProductService).createOrderProducts(any(Order.class), any(List.class));
 
         // when & then
         assertThatThrownBy(() -> orderService.createOrder(dto))
                 .isInstanceOf(InsufficientStockException.class)
                 .hasMessage("재고가 부족합니다.");
-
-        verify(orderRepository, never()).save(any(Order.class));
     }
 
     @Test
