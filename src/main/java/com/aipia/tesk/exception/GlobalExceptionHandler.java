@@ -64,6 +64,20 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
 
+    @ExceptionHandler(DuplicatePaymentException.class)
+    public ResponseEntity<ErrorResponseDto> handleDuplicatePaymentException(DuplicatePaymentException ex) {
+        log.error("DuplicatePaymentException: {}", ex.getMessage());
+        ErrorResponseDto errorResponse = ErrorResponseDto.of(ex.getMessage(), HttpStatus.CONFLICT.value());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
+    }
+
+    @ExceptionHandler(AlreadyPaidException.class)
+    public ResponseEntity<ErrorResponseDto> handleAlreadyPaidException(AlreadyPaidException ex) {
+        log.error("AlreadyPaidException: {}", ex.getMessage());
+        ErrorResponseDto errorResponse = ErrorResponseDto.of(ex.getMessage(), HttpStatus.BAD_REQUEST.value());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponseDto> handleValidationException(MethodArgumentNotValidException ex) {
         String errorMessage = ex.getBindingResult().getFieldErrors().stream()
