@@ -34,6 +34,13 @@ public class Product {
         return product;
     }
 
+    public void updateStock(int quantity) {
+        this.stock += quantity;
+        if (this.stock < 0) {
+            throw new InvalidProductException("재고는 음수가 될 수 없습니다.");
+        }
+    }
+
     private void validate() {
         if (name == null || name.length() > 20) {
             throw new InvalidProductException("상품명은 20자를 초과할 수 없습니다.");

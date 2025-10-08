@@ -34,7 +34,7 @@ class ProductTest {
     void createProductWithNameExceeding20Characters() {
         // given
         ProductCreateDto dto = ProductCreateDto.builder()
-                .name("이것은스물한글자를초과하는상품명입니다")
+                .name("이것은스물한글자를초과하는아주긴상품명입니다")
                 .price(10000)
                 .stock(100)
                 .build();

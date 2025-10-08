@@ -19,4 +19,11 @@ public class ProductService {
         Product product = Product.createProduct(dto);
         return productRepository.save(product);
     }
+
+    @Transactional
+    public void updateStock(Long productId, int quantity) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new IllegalArgumentException("상품을 찾을 수 없습니다."));
+        product.updateStock(quantity);
+    }
 }
