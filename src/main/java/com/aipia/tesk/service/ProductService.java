@@ -2,6 +2,7 @@ package com.aipia.tesk.service;
 
 import com.aipia.tesk.domain.Product;
 import com.aipia.tesk.dto.ProductCreateDto;
+import com.aipia.tesk.exception.ProductNotFoundException;
 import com.aipia.tesk.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,11 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
+    public Product findProductById(Long productId) {
+        return productRepository.findById(productId)
+                .orElseThrow(() -> new ProductNotFoundException("상품을 찾을 수 없습니다."));
+    }
+
     @Transactional
     public Product registerProduct(ProductCreateDto dto) {
         Product product = Product.createProduct(dto);
@@ -22,8 +28,7 @@ public class ProductService {
 
     @Transactional
     public void updateStock(Long productId, int quantity) {
-        Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new IllegalArgumentException("상품을 찾을 수 없습니다."));
+        Product product = this.findProductById(productId);
         product.updateStock(quantity);
     }
 }

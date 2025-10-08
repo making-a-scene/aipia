@@ -3,6 +3,7 @@ package com.aipia.tesk.service;
 import com.aipia.tesk.domain.Product;
 import com.aipia.tesk.dto.ProductCreateDto;
 import com.aipia.tesk.exception.InvalidProductException;
+import com.aipia.tesk.exception.ProductNotFoundException;
 import com.aipia.tesk.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -65,7 +66,7 @@ class ProductServiceTest {
 
         // when & then
         assertThatThrownBy(() -> productService.findProductById(999L))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(ProductNotFoundException.class)
                 .hasMessage("상품을 찾을 수 없습니다.");
 
         verify(productRepository).findById(999L);
