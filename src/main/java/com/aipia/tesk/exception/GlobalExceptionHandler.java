@@ -29,6 +29,13 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
+    @ExceptionHandler(InvalidProductException.class)
+    public ResponseEntity<ErrorResponseDto> handleInvalidProductException(InvalidProductException ex) {
+        log.error("InvalidProductException: {}", ex.getMessage());
+        ErrorResponseDto errorResponse = ErrorResponseDto.of(ex.getMessage(), HttpStatus.BAD_REQUEST.value());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponseDto> handleValidationException(MethodArgumentNotValidException ex) {
         String errorMessage = ex.getBindingResult().getFieldErrors().stream()
