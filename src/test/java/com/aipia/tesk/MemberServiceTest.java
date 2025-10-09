@@ -1,4 +1,4 @@
-package com.aipia.tesk.service;
+package com.aipia.tesk;
 
 import com.aipia.tesk.domain.Member;
 import com.aipia.tesk.dto.MemberJoinDto;

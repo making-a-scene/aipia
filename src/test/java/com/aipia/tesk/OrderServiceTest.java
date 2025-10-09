@@ -1,4 +1,4 @@
-package com.aipia.tesk.service;
+package com.aipia.tesk;
 
 import com.aipia.tesk.domain.Member;
 import com.aipia.tesk.domain.Order;
@@ -9,6 +9,8 @@ import com.aipia.tesk.exception.InvalidDateRangeException;
 import com.aipia.tesk.exception.OrderNotFoundException;
 import com.aipia.tesk.repository.MemberRepository;
 import com.aipia.tesk.repository.OrderRepository;
+import com.aipia.tesk.service.OrderProductService;
+import com.aipia.tesk.service.OrderService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,10 +1,11 @@
-package com.aipia.tesk.service;
+package com.aipia.tesk;
 
 import com.aipia.tesk.domain.Product;
 import com.aipia.tesk.dto.ProductCreateDto;
 import com.aipia.tesk.exception.InvalidProductException;
 import com.aipia.tesk.exception.ProductNotFoundException;
 import com.aipia.tesk.repository.ProductRepository;
+import com.aipia.tesk.service.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
