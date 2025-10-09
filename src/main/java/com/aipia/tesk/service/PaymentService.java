@@ -2,7 +2,6 @@ package com.aipia.tesk.service;
 
 import com.aipia.tesk.domain.Order;
 import com.aipia.tesk.domain.Payment;
-import com.aipia.tesk.exception.DuplicatePaymentException;
 import com.aipia.tesk.exception.OrderNotFoundException;
 import com.aipia.tesk.repository.OrderRepository;
 import com.aipia.tesk.repository.PaymentRepository;
@@ -22,9 +21,6 @@ public class PaymentService {
     public Payment createPayment(Long orderId) {
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new OrderNotFoundException("주문을 찾을 수 없습니다."));
-        if (paymentRepository.findByOrderId(orderId).isPresent()) {
-            throw new DuplicatePaymentException("이미 결제가 존재하는 주문입니다.");
-        }
 
         Payment payment = Payment.createPayment(order);
         return paymentRepository.save(payment);

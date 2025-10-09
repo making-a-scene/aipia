@@ -1,6 +1,7 @@
 package com.aipia.tesk.domain;
 
 import com.aipia.tesk.exception.AlreadyPaidException;
+import com.aipia.tesk.exception.DuplicatePaymentException;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,6 +25,9 @@ public class Payment {
     private boolean isPaid;
 
     public static Payment createPayment(Order order) {
+        if (order.getPayment() != null) {
+            throw new DuplicatePaymentException("이미 결제가 존재하는 주문입니다.");
+        }
         Payment payment = new Payment();
         payment.order = order;
         return payment;
