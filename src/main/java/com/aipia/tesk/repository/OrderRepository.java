@@ -1,6 +1,6 @@
 package com.aipia.tesk.repository;
 
-import com.aipia.tesk.domain.Order;
+import com.aipia.tesk.model.Order;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

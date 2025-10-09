@@ -1,6 +1,6 @@
 package com.aipia.tesk.dto;
 
-import com.aipia.tesk.domain.OrderProduct;
+import com.aipia.tesk.model.OrderProduct;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.aipia.tesk.domain;
+package com.aipia.tesk.model;
 
 import com.aipia.tesk.exception.AlreadyPaidException;
 import com.aipia.tesk.exception.DuplicatePaymentException;

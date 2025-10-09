@@ -1,7 +1,7 @@
 package com.aipia.tesk;
 
-import com.aipia.tesk.domain.Order;
-import com.aipia.tesk.domain.Product;
+import com.aipia.tesk.model.Order;
+import com.aipia.tesk.model.Product;
 import com.aipia.tesk.dto.OrderProductDto;
 import com.aipia.tesk.dto.ProductCreateDto;
 import com.aipia.tesk.exception.ProductNotFoundException;

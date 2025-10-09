@@ -1,6 +1,6 @@
 package com.aipia.tesk.controller;
 
-import com.aipia.tesk.domain.Product;
+import com.aipia.tesk.model.Product;
 import com.aipia.tesk.dto.ProductCreateDto;
 import com.aipia.tesk.dto.ProductResponseDto;
 import com.aipia.tesk.service.ProductService;

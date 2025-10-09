@@ -1,6 +1,6 @@
 package com.aipia.tesk.repository;
 
-import com.aipia.tesk.domain.OrderProduct;
+import com.aipia.tesk.model.OrderProduct;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

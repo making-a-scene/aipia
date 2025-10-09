@@ -1,6 +1,6 @@
 package com.aipia.tesk.controller;
 
-import com.aipia.tesk.domain.Member;
+import com.aipia.tesk.model.Member;
 import com.aipia.tesk.dto.MemberJoinDto;
 import com.aipia.tesk.dto.MemberResponseDto;
 import com.aipia.tesk.service.MemberService;

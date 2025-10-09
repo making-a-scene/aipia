@@ -1,8 +1,8 @@
 package com.aipia.tesk.service;
 
-import com.aipia.tesk.domain.Order;
-import com.aipia.tesk.domain.OrderProduct;
-import com.aipia.tesk.domain.Product;
+import com.aipia.tesk.model.Order;
+import com.aipia.tesk.model.OrderProduct;
+import com.aipia.tesk.model.Product;
 import com.aipia.tesk.dto.OrderProductDto;
 import com.aipia.tesk.exception.ProductNotFoundException;
 import com.aipia.tesk.repository.OrderProductRepository;

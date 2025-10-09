@@ -1,6 +1,6 @@
 package com.aipia.tesk.dto;
 
-import com.aipia.tesk.domain.Payment;
+import com.aipia.tesk.model.Payment;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

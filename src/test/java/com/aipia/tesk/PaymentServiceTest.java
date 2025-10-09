@@ -1,7 +1,7 @@
 package com.aipia.tesk;
 
-import com.aipia.tesk.domain.Order;
-import com.aipia.tesk.domain.Payment;
+import com.aipia.tesk.model.Order;
+import com.aipia.tesk.model.Payment;
 import com.aipia.tesk.exception.AlreadyPaidException;
 import com.aipia.tesk.exception.DuplicatePaymentException;
 import org.junit.jupiter.api.BeforeEach;

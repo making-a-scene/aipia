@@ -1,7 +1,7 @@
 package com.aipia.tesk.service;
 
-import com.aipia.tesk.domain.Member;
-import com.aipia.tesk.domain.Order;
+import com.aipia.tesk.model.Member;
+import com.aipia.tesk.model.Order;
 import com.aipia.tesk.dto.OrderCreateDto;
 import com.aipia.tesk.exception.InvalidDateRangeException;
 import com.aipia.tesk.exception.MemberNotFoundException;

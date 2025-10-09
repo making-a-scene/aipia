@@ -1,6 +1,6 @@
 package com.aipia.tesk.controller;
 
-import com.aipia.tesk.domain.Order;
+import com.aipia.tesk.model.Order;
 import com.aipia.tesk.dto.OrderCreateDto;
 import com.aipia.tesk.dto.OrderResponseDto;
 import com.aipia.tesk.service.OrderService;

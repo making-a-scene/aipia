@@ -1,6 +1,6 @@
 package com.aipia.tesk.controller;
 
-import com.aipia.tesk.domain.Payment;
+import com.aipia.tesk.model.Payment;
 import com.aipia.tesk.dto.PaymentResponseDto;
 import com.aipia.tesk.service.PaymentService;
 import lombok.RequiredArgsConstructor;

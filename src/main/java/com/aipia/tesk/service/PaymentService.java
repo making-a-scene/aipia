@@ -1,7 +1,7 @@
 package com.aipia.tesk.service;
 
-import com.aipia.tesk.domain.Order;
-import com.aipia.tesk.domain.Payment;
+import com.aipia.tesk.model.Order;
+import com.aipia.tesk.model.Payment;
 import com.aipia.tesk.exception.OrderNotFoundException;
 import com.aipia.tesk.repository.OrderRepository;
 import com.aipia.tesk.repository.PaymentRepository;

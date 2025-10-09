@@ -1,7 +1,7 @@
 package com.aipia.tesk;
 
-import com.aipia.tesk.domain.Member;
-import com.aipia.tesk.domain.Order;
+import com.aipia.tesk.model.Member;
+import com.aipia.tesk.model.Order;
 import com.aipia.tesk.dto.OrderCreateDto;
 import com.aipia.tesk.dto.OrderProductDto;
 import com.aipia.tesk.exception.InsufficientStockException;

@@ -1,4 +1,4 @@
-package com.aipia.tesk.domain;
+package com.aipia.tesk.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;

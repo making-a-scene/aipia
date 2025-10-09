@@ -1,6 +1,6 @@
 package com.aipia.tesk.service;
 
-import com.aipia.tesk.domain.Product;
+import com.aipia.tesk.model.Product;
 import com.aipia.tesk.dto.ProductCreateDto;
 import com.aipia.tesk.exception.ProductNotFoundException;
 import com.aipia.tesk.repository.ProductRepository;
