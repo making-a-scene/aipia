@@ -1,5 +1,6 @@
 package com.aipia.tesk.domain;
 
+import com.aipia.tesk.exception.AlreadyPaidException;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,4 +22,21 @@ public class Payment {
     private Order order;
 
     private boolean isPaid;
+
+    public static Payment createPayment(Order order) {
+        Payment payment = new Payment();
+        payment.order = order;
+        return payment;
+    }
+
+    public boolean performPayment() {
+        if (this.isPaid) {
+            throw new AlreadyPaidException("이미 결제가 완료된 주문입니다.");
+        }
+
+        // 결제 수행
+
+        this.isPaid = true;
+        return true;
+    }
 }
